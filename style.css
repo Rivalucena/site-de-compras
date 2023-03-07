@@ -12,3 +12,14 @@ body {
 .modelo {
     display:none;
 }
+header {
+    position: fixed;
+    left:0;
+    top:0;
+    right:0;
+    height:60px;
+    background-color:#399ade;
+    display:none;
+    justify-content: flex-end;
+    align-items: center;
+}
