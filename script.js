@@ -1,4 +1,6 @@
+let cart =[];
 let modalQt = 1;
+let modalKey = 0;
 
 const c = (el)=>document.querySelector(el);
 const cs = (el)=>document.querySelectorAll(el);
@@ -17,6 +19,7 @@ lancheJson.map((item, index)=>{
         e.preventDefault();
         let key = e.target.closest('.lanche-item').getAttribute('data-key');
         modalQt = 1;
+        modalKey = key;
 
         c('.lancheBig img').src = lancheJson[key].img;
         c('.lancheInfo h1').innerHTML = lancheJson[key].name;
@@ -69,4 +72,15 @@ cs('.lancheInfo--size').forEach((size, sizeIndex)=>{
         c('.lancheInfo--size.selected').classList.remove('selected');
         size.classList.add('selected');
     });
+});
+c('.lancheInfo--addButton').addEventListener('click', ()=>{
+    let size = parseInt(c('.lancheInfo--size.selected').getAttribute('data-key'));
+
+    cart.push({
+        id:lancheJson[modalKey].id,
+        size,
+        qt:modalQt
+    });
+
+    closseModal();
 });
