@@ -3,6 +3,7 @@ let modalQt = 1;
 const c = (el)=>document.querySelector(el);
 const cs = (el)=>document.querySelectorAll(el);
 
+//listagem dos lanches
 lancheJson.map((item, index)=>{
     let lancheItem = c('.modelo .lanche-item').cloneNode(true);
     
@@ -42,3 +43,14 @@ lancheJson.map((item, index)=>{
 
     c('.lanche-area').append( lancheItem );
 });
+
+//eventos do MODAL
+function closseModal() {
+    c('.lancheWindowArea').style.opacity = 0;
+    setTimeout (()=>{
+        c('.lancheWindowArea').style.display = 'none';
+    }, 500);
+}
+cs('.lancheInfo--cancelButton, .lancheInfo--cancelMobileButton').forEach ((item)=>{
+    item.addEventListener('click', closseModal);
+})
