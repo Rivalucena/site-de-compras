@@ -53,4 +53,20 @@ function closseModal() {
 }
 cs('.lancheInfo--cancelButton, .lancheInfo--cancelMobileButton').forEach ((item)=>{
     item.addEventListener('click', closseModal);
-})
+});
+c('.lancheInfo--qtmenos').addEventListener('click', ()=>{
+   if (modalQt > 1){
+        modalQt--;
+        c('.lancheInfo--qt').innerHTML = modalQt;
+   }
+});
+c('.lancheInfo--qtmais').addEventListener('click', ()=>{
+    modalQt++;
+    c('.lancheInfo--qt').innerHTML = modalQt;
+});
+cs('.lancheInfo--size').forEach((size, sizeIndex)=>{
+    size.addEventListener('click', (e)=>{
+        c('.lancheInfo--size.selected').classList.remove('selected');
+        size.classList.add('selected');
+    });
+});
