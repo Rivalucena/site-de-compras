@@ -1,5 +1,7 @@
+let modalQt = 1;
+
 const c = (el)=>document.querySelector(el);
-const cs = (el)=>document.querySelector(el);
+const cs = (el)=>document.querySelectorAll(el);
 
 lancheJson.map((item, index)=>{
     let lancheItem = c('.modelo .lanche-item').cloneNode(true);
@@ -13,11 +15,24 @@ lancheJson.map((item, index)=>{
     lancheItem.querySelector('a').addEventListener('click', (e)=>{
         e.preventDefault();
         let key = e.target.closest('.lanche-item').getAttribute('data-key');
+        modalQt = 1;
 
         c('.lancheBig img').src = lancheJson[key].img;
         c('.lancheInfo h1').innerHTML = lancheJson[key].name;
         c('.lancheInfo--desc').innerHTML = lancheJson[key].description;
-        
+        c('.lancheInfo--actualPrice').innerHTML = `R$ ${lancheJson[key].price.toFixed(2)}`;
+        c('.lancheInfo--size.selected').classList.remove('selected');
+        cs('.lancheInfo--size').forEach((size, sizeIndex)=>{
+            if(sizeIndex == 2) {
+                size.classList.add('selected');
+            }
+
+            size.querySelector('span').innerHTML = lancheJson[key].sizes[sizeIndex];
+            
+        });
+
+        c('.lancheInfo--qt').innerHTML = modalQt;
+
         c('.lancheWindowArea').style.opacity = 0;
         c('.lancheWindowArea').style.display = 'flex';
         setTimeout(()=>{
