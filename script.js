@@ -76,11 +76,20 @@ cs('.lancheInfo--size').forEach((size, sizeIndex)=>{
 c('.lancheInfo--addButton').addEventListener('click', ()=>{
     let size = parseInt(c('.lancheInfo--size.selected').getAttribute('data-key'));
 
-    cart.push({
+    let identifier = lancheJson[modalKey].id+'@'+size;
+    
+    let key = cart.findIndex((item)=>item.identifier == identifier);
+
+    if(key > -1){
+        cart[key].qt += modalQt;
+    } else {
+      cart.push({
+        identifier,
         id:lancheJson[modalKey].id,
         size,
         qt:modalQt
     });
+}
 
     closseModal();
 });
