@@ -97,6 +97,10 @@ c('.lancheInfo--addButton').addEventListener('click', ()=>{
 function updateCart() {
     if(cart.length > 0){
         c('aside').classList.add('show');
+        for(let i in cart){
+            let lancheItem = lancheJson.find((item)=>item.id == cart[i].id);
+        }
+
     } else {
         c('aside').classList.remove('show');
     }
