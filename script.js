@@ -121,6 +121,18 @@ function updateCart() {
             cartItem.querySelector('img').src = lancheItem.img;
             cartItem.querySelector('.cart--item-nome').innerHTML = lancheName;
             cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
+            cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', ()=>{
+                if(cart[i].qt > 1) {
+                    cart[i].qt--;
+                } else {
+                    cart.splice(i, 1);
+                }
+                updateCart();
+            });
+            cartItem.querySelector('.cart--item-qtmais').addEventListener('click', ()=>{
+                cart[i].qt++;
+                updateCart();
+            });
 
             c('.cart').append(cartItem);
         }
